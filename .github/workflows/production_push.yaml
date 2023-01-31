@@ -1,0 +1,33 @@
+name: Production Push
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*' #only after /
+      - 'feature/**' #includes any string
+      - '!feature/featC' #ignores this particular branch
+    tags:
+      - v1
+      - v1.*
+    paths:
+      - "**.js" # any js file in repo
+    #paths-ignore:
+      #- ""
+    #tags-ignore:
+      #- ""
+    #branches-ignore:
+      #- "other-branch" we can't have both branches and branches 
+      #ignore at the same time
+  pull_request:
+    branches:
+      - main
+    
+
+jobs:
+  some-event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Something
+        run: echo "something" 
+  
